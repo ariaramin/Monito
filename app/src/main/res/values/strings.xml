@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">مانیتو</string>
+
+    <string name="cash">موجودی</string>
+    <string name="income">درآمد</string>
+    <string name="expence">مخارج</string>
+    <string name="toman">تومان</string>
+</resources>
