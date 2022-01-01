@@ -17,18 +17,24 @@ class TransactionDialog() : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity)
         val view = LayoutInflater.from(activity).inflate(R.layout.transaction_dialog, null, false)
+        val amountEditTextLayout = view.findViewById<TextInputLayout>(R.id.amountDialogEditTextLayout)
+        val amountEditText = view.findViewById<TextInputEditText>(R.id.amountDialogEditText)
         val noteEditTextLayout = view.findViewById<TextInputLayout>(R.id.noteDialogEditTextLayout)
         val noteEditText = view.findViewById<TextInputEditText>(R.id.noteDialogEditText)
         val dateChip = view.findViewById<Chip>(R.id.dateChip)
         val categoryChip = view.findViewById<Chip>(R.id.categoryChip)
         val saveTransactionButton = view.findViewById<Button>(R.id.saveTransactionButton)
         saveTransactionButton.setOnClickListener {
-            if (noteEditText.length() > 0) {
+            if (amountEditText.length() > 0) {
 
+            } else {
+                amountEditTextLayout.error = resources.getString(R.string.empty_field_error)
             }
         }
         builder.setView(view)
         return builder.create()
     }
+
+
 
 }

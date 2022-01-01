@@ -52,8 +52,8 @@ class TransactionAdapter(var context: Context) : RecyclerView.Adapter<Transactio
         fun bindData(transaction: Transaction) {
             dateTextView.text = transaction.date
             totalTextView.text = transaction.amount.toString()
-            categoryImageView.setImageBitmap(transaction.category.image)
-            titleTextView.text = transaction.category.title
+//            categoryImageView.setImageBitmap(transaction.category.image)
+//            titleTextView.text = transaction.category.title
             if (transaction.note.isNotEmpty()) {
                 noteTextView.text = transaction.note
             } else {

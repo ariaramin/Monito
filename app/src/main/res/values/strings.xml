@@ -7,7 +7,8 @@
     <string name="toman">تومان</string>
     <string name="add_transaction">اضافه کردن تراکنش جدید</string>
     <string name="note_hint">یادداشت</string>
-<!--    <string name="empty_field_error">یادداشت</string>-->
+    <string name="amount_hint">مبلغ</string>
+    <string name="empty_field_error">مبلغ نباید خالی باشد</string>
     <string name="category">دسته‌بندی</string>
     <string name="save_transaction">ذخیره</string>
 </resources>

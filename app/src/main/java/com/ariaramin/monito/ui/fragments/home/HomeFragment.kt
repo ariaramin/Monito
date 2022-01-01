@@ -31,13 +31,13 @@ class HomeFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.home_fragment, container, false)
 
-        val database = AppDatabase.getInstance(container!!.context)
+        val database = AppDatabase.getInstance(requireContext())
         val transactionRepository = TransactionRepository(database)
         val factory = TransactionViewModelFactory(transactionRepository)
 
         // Initialised View Model
         viewModel = ViewModelProvider(this, factory).get(TransactionViewModel::class.java)
-        val transactionAdapter = TransactionAdapter(container.context)
+        val transactionAdapter = TransactionAdapter(requireContext())
         val recyclerView = view.findViewById<RecyclerView>(R.id.transactionRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this.context)
         recyclerView.adapter = transactionAdapter

@@ -7,8 +7,6 @@ import com.ariaramin.monito.models.Transaction
 
 class TransactionViewModel(private val repository: TransactionRepository) : ViewModel() {
 
-    private var transactionLiveData: MutableLiveData<List<Transaction>>? = null
-
     fun insertTransaction(transaction: Transaction) = repository.insertTransaction(transaction)
 
     fun getAllTransactions() = repository.getAllTransaction()

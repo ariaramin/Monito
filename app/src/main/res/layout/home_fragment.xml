@@ -31,18 +31,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <com.google.android.material.card.MaterialCardView
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:cardBackgroundColor="@android:color/transparent"
-                        app:cardCornerRadius="16dp">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/green_gradient"
-                            android:padding="12dp">
+                        android:layout_weight="1">
 
                             <TextView
                                 android:id="@+id/textView"
@@ -86,9 +78,8 @@
                                 app:layout_constraintEnd_toEndOf="@+id/textView6"
                                 app:layout_constraintStart_toStartOf="@+id/textView6"
                                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    </com.google.android.material.card.MaterialCardView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </TableRow>
 
                 <TableRow

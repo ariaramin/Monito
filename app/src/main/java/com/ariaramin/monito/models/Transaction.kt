@@ -9,14 +9,14 @@ import androidx.room.PrimaryKey
     foreignKeys = [ForeignKey(
         entity = Category::class,
         parentColumns = ["id"],
-        childColumns = ["category"],
+        childColumns = ["categoryId"],
         onDelete = ForeignKey.CASCADE
     )]
 )
 data class Transaction(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
-    val category: Category,
+    val categoryId: Long,
     val note: String,
     val amount: Long,
     val date: String
