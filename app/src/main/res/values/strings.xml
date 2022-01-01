@@ -5,4 +5,9 @@
     <string name="income">درآمد</string>
     <string name="expence">مخارج</string>
     <string name="toman">تومان</string>
+    <string name="add_transaction">اضافه کردن تراکنش جدید</string>
+    <string name="note_hint">یادداشت</string>
+<!--    <string name="empty_field_error">یادداشت</string>-->
+    <string name="category">دسته‌بندی</string>
+    <string name="save_transaction">ذخیره</string>
 </resources>

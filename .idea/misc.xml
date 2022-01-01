@@ -9,7 +9,13 @@
         <entry key="app/src/main/res/drawable/chart_selector.xml" value="0.35208333333333336" />
         <entry key="app/src/main/res/drawable/green_gradient.xml" value="0.35208333333333336" />
         <entry key="app/src/main/res/drawable/home_selector.xml" value="0.35208333333333336" />
+        <entry key="app/src/main/res/drawable/ic_calendar.xml" value="0.35208333333333336" />
+        <entry key="app/src/main/res/drawable/ic_category.xml" value="0.35208333333333336" />
+        <entry key="app/src/main/res/drawable/ic_category_outline.xml" value="0.35208333333333336" />
+        <entry key="app/src/main/res/drawable/ic_chart.xml" value="0.35208333333333336" />
+        <entry key="app/src/main/res/drawable/ic_chart_outline.xml" value="0.35208333333333336" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.35208333333333336" />
+        <entry key="app/src/main/res/drawable/ic_home_outline.xml" value="0.35208333333333336" />
         <entry key="app/src/main/res/drawable/ic_menu.xml" value="0.35208333333333336" />
         <entry key="app/src/main/res/drawable/ic_menu_outline.xml" value="0.35208333333333336" />
         <entry key="app/src/main/res/drawable/ic_plus.xml" value="0.35208333333333336" />
@@ -18,6 +24,7 @@
         <entry key="app/src/main/res/layout-v21/activity_main.xml" value="0.3359375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.32083333333333336" />
         <entry key="app/src/main/res/layout/home_fragment.xml" value="0.3359375" />
+        <entry key="app/src/main/res/layout/transaction_dialog.xml" value="0.3359375" />
         <entry key="app/src/main/res/layout/transaction_item.xml" value="0.3359375" />
         <entry key="app/src/main/res/menu/bottom_app_bar.xml" value="0.3359375" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.35208333333333336" />

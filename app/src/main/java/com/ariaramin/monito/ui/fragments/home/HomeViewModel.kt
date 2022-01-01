@@ -1,4 +1,4 @@
-package com.ariaramin.monito
+package com.ariaramin.monito.ui.fragments.home
 
 import androidx.lifecycle.ViewModel
 
