@@ -1,8 +1,8 @@
-package com.ariaramin.monito.Repo
+package com.ariaramin.monito.Repositories
 
 import androidx.lifecycle.LiveData
 import com.ariaramin.monito.Database.AppDatabase
-import com.ariaramin.monito.models.Transaction
+import com.ariaramin.monito.Models.Transaction
 
 class TransactionRepository(private val db: AppDatabase) {
 

@@ -1,5 +1,6 @@
-package com.ariaramin.monito.models
+package com.ariaramin.monito.Models
 
+import androidx.annotation.Nullable
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
@@ -17,6 +18,7 @@ data class Transaction(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
     val categoryId: Long,
+    @Nullable
     val note: String,
     val amount: Long,
     val date: String

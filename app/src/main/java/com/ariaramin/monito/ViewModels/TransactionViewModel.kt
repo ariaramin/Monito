@@ -1,9 +1,8 @@
-package com.ariaramin.monito.ui.activities
+package com.ariaramin.monito.ViewModels
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.ariaramin.monito.Repo.TransactionRepository
-import com.ariaramin.monito.models.Transaction
+import com.ariaramin.monito.Repositories.TransactionRepository
+import com.ariaramin.monito.Models.Transaction
 
 class TransactionViewModel(private val repository: TransactionRepository) : ViewModel() {
 

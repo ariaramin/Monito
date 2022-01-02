@@ -1,4 +1,4 @@
-package com.ariaramin.monito.Adapter
+package com.ariaramin.monito.Adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ariaramin.monito.R
-import com.ariaramin.monito.models.Transaction
+import com.ariaramin.monito.Models.Transaction
 
 class TransactionAdapter(var context: Context) : RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>() {
 
@@ -22,7 +22,7 @@ class TransactionAdapter(var context: Context) : RecyclerView.Adapter<Transactio
     }
 
     override fun onBindViewHolder(holder: TransactionViewHolder, position: Int) {
-        holder.bindData(transactions.get(position))
+        holder.bindData(transactions[position])
     }
 
     override fun getItemCount(): Int {
@@ -45,7 +45,7 @@ class TransactionAdapter(var context: Context) : RecyclerView.Adapter<Transactio
         val dateTextView = itemView.findViewById<TextView>(R.id.dateTextView)
         val totalTextView = itemView.findViewById<TextView>(R.id.totalTextView)
         val categoryImageView = itemView.findViewById<ImageView>(R.id.categoryImageView)
-        val titleTextView = itemView.findViewById<TextView>(R.id.titleTextView)
+        val titleTextView = itemView.findViewById<TextView>(R.id.categoryTitleTextView)
         val noteTextView = itemView.findViewById<TextView>(R.id.noteTextView)
         val amountTextView = itemView.findViewById<TextView>(R.id.amountTextView)
 

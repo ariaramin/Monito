@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import androidx.room.Delete
-import com.ariaramin.monito.models.Transaction
+import com.ariaramin.monito.Models.Transaction
 
 @Dao
 interface TransactionDao {

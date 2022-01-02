@@ -1,7 +1,6 @@
-package com.ariaramin.monito.models
+package com.ariaramin.monito.Models
 
 import android.graphics.Bitmap
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 

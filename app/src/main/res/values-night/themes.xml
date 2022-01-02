@@ -10,5 +10,11 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="numberPickerTheme">@style/DatePicker</item>
+    </style>
+
+    <style name="DatePicker">
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="colorControlNormal">@color/grey_500</item>
     </style>
 </resources>

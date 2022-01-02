@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.FragmentTransaction
 import com.ariaramin.monito.ui.fragments.home.HomeFragment
 import com.ariaramin.monito.R
-import com.ariaramin.monito.dialog.TransactionDialog
+import com.ariaramin.monito.Dialogs.TransactionDialog
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 

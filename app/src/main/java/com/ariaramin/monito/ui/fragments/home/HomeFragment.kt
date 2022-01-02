@@ -5,17 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.ariaramin.monito.Adapter.TransactionAdapter
+import com.ariaramin.monito.Adapters.TransactionAdapter
 import com.ariaramin.monito.Database.AppDatabase
 import com.ariaramin.monito.R
-import com.ariaramin.monito.Repo.TransactionRepository
-import com.ariaramin.monito.models.Transaction
-import com.ariaramin.monito.ui.activities.TransactionViewModel
-import com.ariaramin.monito.ui.activities.TransactionViewModelFactory
+import com.ariaramin.monito.Repositories.TransactionRepository
+import com.ariaramin.monito.ViewModels.TransactionViewModel
+import com.ariaramin.monito.ViewModels.TransactionViewModelFactory
 
 class HomeFragment : Fragment() {
 

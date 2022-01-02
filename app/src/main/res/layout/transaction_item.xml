@@ -62,12 +62,12 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/titleTextView"
+            android:id="@+id/categoryTitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="6dp"
-            android:layout_toEndOf="@id/categoryImageView"
+            android:layout_toEndOf="@id/transactionCategoryImageView"
             android:textColor="@color/black"
             android:textSize="22sp"
             tools:text="غذا" />
@@ -76,19 +76,19 @@
             android:id="@+id/noteTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/titleTextView"
-            android:layout_alignStart="@id/titleTextView"
+            android:layout_below="@id/categoryTitleTextView"
+            android:layout_alignStart="@id/categoryTitleTextView"
             android:textColor="@color/black"
             android:textSize="12sp"
             tools:text="پیتزا" />
 
         <ImageView
-            android:id="@+id/categoryImageView"
+            android:id="@+id/transactionCategoryImageView"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             tools:srcCompat="@drawable/food" />
-
     </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
