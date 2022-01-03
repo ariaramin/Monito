@@ -15,11 +15,12 @@ import androidx.room.PrimaryKey
     )]
 )
 data class Transaction(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long,
-    val categoryId: Long,
+    var categoryId: Long,
     @Nullable
-    val note: String,
-    val amount: Long,
-    val date: String
-)
+    var note: String,
+    var amount: String,
+    var date: String
+) {
+    @PrimaryKey(autoGenerate = true)
+    var id: Long? = null
+}

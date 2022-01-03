@@ -4,8 +4,13 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import android.app.AlertDialog
+import android.graphics.drawable.BitmapDrawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
+import com.ariaramin.monito.Adapters.ItemEventListener
+import com.ariaramin.monito.Models.Category
+import com.ariaramin.monito.Models.Transaction
 import com.ariaramin.monito.R
 import com.ariaramin.monito.Utils.Utils
 import com.ariaramin.monito.ViewModels.TransactionViewModel
@@ -20,10 +25,11 @@ import saman.zamani.persiandate.PersianDateFormat
 import saman.zamani.persiandate.PersianDate
 
 
-class TransactionDialog() : DialogFragment() {
+class TransactionDialog() : DialogFragment(), ItemEventListener {
 
     private lateinit var viewModel: TransactionViewModel
     private var dateChip: Chip? = null
+    private var categoryChip: Chip? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity)
@@ -37,15 +43,20 @@ class TransactionDialog() : DialogFragment() {
         dateChip!!.setOnClickListener {
             showDatePicker()
         }
-        val categoryChip = view.findViewById<Chip>(R.id.categoryChip)
-        categoryChip.setOnClickListener {
+        categoryChip = view.findViewById<Chip>(R.id.categoryChip)
+        categoryChip!!.setOnClickListener {
             val bottomSheet = CategoriesBottomSheet()
             bottomSheet.show(parentFragmentManager, bottomSheet.tag)
         }
         val saveTransactionButton = view.findViewById<Button>(R.id.saveTransactionButton)
         saveTransactionButton.setOnClickListener {
             if (amountEditText.length() > 0) {
-
+//                val transaction = Transaction(
+//                    categoryChip!!.tag as Long,
+//                    noteEditText.text.toString(),
+//                    amountEditText.text.toString(),
+//                    dateChip!!.tag.toString()
+//                )
             } else {
                 amountEditTextLayout.error = resources.getString(R.string.empty_field_error)
             }
@@ -107,5 +118,11 @@ class TransactionDialog() : DialogFragment() {
         picker.show()
     }
 
+    override fun OnItemClick(category: Category) {
+
+        Log.i("c", categoryChip.toString())
+//        categoryChip?.text = category.title
+//        categoryChip!!.chipIcon = BitmapDrawable(resources, category.image)
+    }
 
 }

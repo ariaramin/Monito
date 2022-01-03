@@ -12,13 +12,13 @@ import com.ariaramin.monito.Models.Transaction
 import com.ariaramin.monito.R
 import com.bumptech.glide.Glide
 
-class CategoryAdapter(var context: Context) :
+class CategoryAdapter(val itemEventListener: ItemEventListener) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     private var categories: MutableList<Category> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.category_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.category_item, parent, false)
         return CategoryViewHolder(view)
     }
 
@@ -40,7 +40,7 @@ class CategoryAdapter(var context: Context) :
         notifyDataSetChanged()
     }
 
-    class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val titleTextView = itemView.findViewById<TextView>(R.id.categoryTitleTextView)
         val categoryImageView = itemView.findViewById<ImageView>(R.id.categoryImageView)
@@ -50,6 +50,13 @@ class CategoryAdapter(var context: Context) :
             Glide.with(itemView)
                 .load(category.image)
                 .into(categoryImageView)
+            itemView.setOnClickListener {
+                itemEventListener.OnItemClick(category)
+            }
         }
     }
+}
+
+interface ItemEventListener {
+    fun OnItemClick(category: Category)
 }

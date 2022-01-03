@@ -6,9 +6,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "category_tbl")
 data class Category(
+    var title: String,
+    var type: String,
+    var image: Bitmap
+) {
     @PrimaryKey(autoGenerate = true)
-    val id: Long,
-    val title: String,
-    val type: String,
-    val image: Bitmap
-)
+    var id: Long? = null
+}
