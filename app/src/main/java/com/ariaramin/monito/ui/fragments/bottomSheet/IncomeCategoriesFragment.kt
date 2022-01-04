@@ -1,11 +1,9 @@
-package com.ariaramin.monito.ui.fragments.home
+package com.ariaramin.monito.ui.fragments.bottomSheet
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.content.res.AppCompatResources.getDrawable
-import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -14,13 +12,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ariaramin.monito.Adapters.CategoryAdapter
 import com.ariaramin.monito.Database.AppDatabase
 import com.ariaramin.monito.Dialogs.TransactionDialog
-import com.ariaramin.monito.Models.Category
 import com.ariaramin.monito.R
 import com.ariaramin.monito.Repositories.CategoryRepository
 import com.ariaramin.monito.ViewModels.CategoryViewModel
 import com.ariaramin.monito.ViewModels.CategoryViewModelFactory
 
-class CategoriesFragment : Fragment() {
+class IncomeCategoriesFragment : Fragment() {
 
     private lateinit var viewModel: CategoryViewModel
 

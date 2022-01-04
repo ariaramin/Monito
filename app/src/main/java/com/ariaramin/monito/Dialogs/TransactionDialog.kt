@@ -28,8 +28,12 @@ import saman.zamani.persiandate.PersianDate
 class TransactionDialog() : DialogFragment(), ItemEventListener {
 
     private lateinit var viewModel: TransactionViewModel
-    private var dateChip: Chip? = null
-    private var categoryChip: Chip? = null
+
+    companion object {
+        private var bottomSheet: CategoriesBottomSheet? = null
+        private var dateChip: Chip? = null
+        private var categoryChip: Chip? = null
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity)
@@ -37,7 +41,6 @@ class TransactionDialog() : DialogFragment(), ItemEventListener {
         val amountEditTextLayout =
             view.findViewById<TextInputLayout>(R.id.amountDialogEditTextLayout)
         val amountEditText = view.findViewById<TextInputEditText>(R.id.amountDialogEditText)
-        val noteEditTextLayout = view.findViewById<TextInputLayout>(R.id.noteDialogEditTextLayout)
         val noteEditText = view.findViewById<TextInputEditText>(R.id.noteDialogEditText)
         dateChip = view.findViewById<Chip>(R.id.dateChip)
         dateChip!!.setOnClickListener {
@@ -45,18 +48,21 @@ class TransactionDialog() : DialogFragment(), ItemEventListener {
         }
         categoryChip = view.findViewById<Chip>(R.id.categoryChip)
         categoryChip!!.setOnClickListener {
-            val bottomSheet = CategoriesBottomSheet()
-            bottomSheet.show(parentFragmentManager, bottomSheet.tag)
+            bottomSheet = CategoriesBottomSheet()
+            bottomSheet!!.show(parentFragmentManager, bottomSheet!!.tag)
         }
         val saveTransactionButton = view.findViewById<Button>(R.id.saveTransactionButton)
         saveTransactionButton.setOnClickListener {
             if (amountEditText.length() > 0) {
-//                val transaction = Transaction(
-//                    categoryChip!!.tag as Long,
-//                    noteEditText.text.toString(),
-//                    amountEditText.text.toString(),
-//                    dateChip!!.tag.toString()
-//                )
+                val transaction = Transaction(
+                    categoryChip!!.tag as Long,
+                    noteEditText.text.toString(),
+                    amountEditText.text.toString(),
+                    dateChip!!.tag.toString()
+                )
+                viewModel.insertTransaction(transaction)
+                Log.i("t", "${transaction.categoryId} ${transaction.amount} ${transaction.note} ${transaction.date}")
+                dismiss()
             } else {
                 amountEditTextLayout.error = resources.getString(R.string.empty_field_error)
             }
@@ -119,10 +125,10 @@ class TransactionDialog() : DialogFragment(), ItemEventListener {
     }
 
     override fun OnItemClick(category: Category) {
-
-        Log.i("c", categoryChip.toString())
-//        categoryChip?.text = category.title
-//        categoryChip!!.chipIcon = BitmapDrawable(resources, category.image)
+        categoryChip!!.tag = category.id
+        categoryChip!!.text = category.title
+        categoryChip!!.chipIcon = BitmapDrawable(category.image)
+        bottomSheet!!.dismiss()
     }
 
 }

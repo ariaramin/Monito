@@ -13,6 +13,11 @@
         <item name="numberPickerTheme">@style/DatePicker</item>
     </style>
 
+    <style name="chipText" parent="TextAppearance.MaterialComponents.Chip">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/primary_regular</item>
+    </style>
+
     <style name="DatePicker">
         <item name="android:textColorPrimary">@color/black</item>
         <item name="colorControlNormal">@color/grey_500</item>

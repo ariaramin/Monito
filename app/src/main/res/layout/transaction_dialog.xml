@@ -84,9 +84,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="52dp"
                 android:layoutDirection="ltr"
+                android:textAppearance="@style/chipText"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 app:chipBackgroundColor="@color/grey_100"
                 app:chipIcon="@drawable/ic_calendar"
                 app:chipStartPadding="6dp"
@@ -97,12 +96,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="52dp"
                 android:layoutDirection="ltr"
+                android:tag="1"
                 android:text="@string/category"
+                android:textAppearance="@style/chipText"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 app:chipBackgroundColor="@color/grey_100"
-                app:chipIcon="@drawable/other"
+                app:chipIcon="@drawable/more"
+                app:chipIconSize="24dp"
                 app:rippleColor="@color/grey_100" />
 
         </com.google.android.material.chip.ChipGroup>
