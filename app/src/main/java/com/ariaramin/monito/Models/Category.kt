@@ -11,5 +11,5 @@ data class Category(
     var image: Bitmap
 ) {
     @PrimaryKey(autoGenerate = true)
-    var id: Long? = null
+    var categoryid: Long? = null
 }

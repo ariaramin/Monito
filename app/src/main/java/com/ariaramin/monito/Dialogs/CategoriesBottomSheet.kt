@@ -30,8 +30,8 @@ class CategoriesBottomSheet : BottomSheetDialogFragment() {
         viewPager.adapter = adapter
 
         val tabs = arrayOf(
-            resources.getString(R.string.income),
-            resources.getString(R.string.expence)
+            resources.getString(R.string.expence),
+            resources.getString(R.string.income)
         )
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = tabs[position]

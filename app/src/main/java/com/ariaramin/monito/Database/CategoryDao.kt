@@ -12,6 +12,9 @@ interface CategoryDao {
     @Insert
     fun addCategory(category: Category): Long
 
+    @Query("SELECT * FROM category_tbl")
+    fun getAllCategories(): LiveData<List<Category>>
+
     @Query("SELECT * FROM category_tbl WHERE type = 'income'")
     fun getIncomeCategories(): LiveData<List<Category>>
 

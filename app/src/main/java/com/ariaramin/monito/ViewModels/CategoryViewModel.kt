@@ -12,8 +12,9 @@ class CategoryViewModel(private val repository: CategoryRepository) : ViewModel(
         repository.insertCategory(category)
     }
 
-    fun getIncomeCategories() = repository.getIncomeCategories()
+    fun getAllCategories() = repository.getAllCategories()
 
+    fun getIncomeCategories() = repository.getIncomeCategories()
 
     fun getExpenseCategories() = repository.getExpenseCategories()
 }

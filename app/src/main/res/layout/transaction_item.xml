@@ -4,52 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="14dp"
     android:layoutDirection="rtl">
-
-    <RelativeLayout
-        android:id="@+id/headerRelativeLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/grey_100"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:paddingBottom="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/totalTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:textColor="@color/black"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            tools:text="۱۰۰،۰۰۰-" />
-
-        <TextView
-            android:id="@+id/dateTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerInParent="true"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            tools:text="۸ دی ۱۴۰۰" />
-
-    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:paddingStart="12dp"
         android:paddingTop="6dp"
         android:paddingEnd="12dp"
         android:paddingBottom="6dp"
-        app:layout_constraintTop_toBottomOf="@+id/headerRelativeLayout">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/amountTextView"
@@ -59,17 +26,18 @@
             android:layout_centerVertical="true"
             android:text="۱۰۰،۰۰۰-"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/categoryTitleTextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="6dp"
+            android:layout_height="32dp"
+            android:layout_centerVertical="false"
+            android:layout_marginStart="8dp"
             android:layout_toEndOf="@id/transactionCategoryImageView"
             android:textColor="@color/black"
-            android:textSize="22sp"
+            android:textSize="20sp"
             tools:text="غذا" />
 
         <TextView
@@ -84,8 +52,8 @@
 
         <ImageView
             android:id="@+id/transactionCategoryImageView"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             tools:srcCompat="@drawable/food" />

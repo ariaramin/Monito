@@ -4,16 +4,20 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import android.app.AlertDialog
+import android.content.Context
 import android.graphics.drawable.BitmapDrawable
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
+import androidx.lifecycle.ViewModelProvider
 import com.ariaramin.monito.Adapters.ItemEventListener
+import com.ariaramin.monito.Database.AppDatabase
 import com.ariaramin.monito.Models.Category
 import com.ariaramin.monito.Models.Transaction
 import com.ariaramin.monito.R
+import com.ariaramin.monito.Repositories.TransactionRepository
 import com.ariaramin.monito.Utils.Utils
 import com.ariaramin.monito.ViewModels.TransactionViewModel
+import com.ariaramin.monito.ViewModels.TransactionViewModelFactory
 import com.google.android.material.chip.Chip
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -21,18 +25,31 @@ import ir.hamsaa.persiandatepicker.PersianDatePickerDialog
 import ir.hamsaa.persiandatepicker.api.PersianPickerDate
 import ir.hamsaa.persiandatepicker.api.PersianPickerListener
 import saman.zamani.persiandate.PersianDateFormat
-
 import saman.zamani.persiandate.PersianDate
-
 
 class TransactionDialog() : DialogFragment(), ItemEventListener {
 
     private lateinit var viewModel: TransactionViewModel
+    private lateinit var callback: DialogListener
 
     companion object {
         private var bottomSheet: CategoriesBottomSheet? = null
         private var dateChip: Chip? = null
         private var categoryChip: Chip? = null
+        private var selectedCategory: Category? = null
+    }
+//
+//    override fun onAttach(context: Context) {
+//        super.onAttach(context)
+//        callback = context as DialogListener
+//    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val database = AppDatabase.getInstance(requireContext())
+        val transactionRepository = TransactionRepository(database)
+        val factory = TransactionViewModelFactory(transactionRepository)
+        viewModel = ViewModelProvider(this, factory).get(TransactionViewModel::class.java)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -55,13 +72,12 @@ class TransactionDialog() : DialogFragment(), ItemEventListener {
         saveTransactionButton.setOnClickListener {
             if (amountEditText.length() > 0) {
                 val transaction = Transaction(
-                    categoryChip!!.tag as Long,
+                    selectedCategory!!,
                     noteEditText.text.toString(),
                     amountEditText.text.toString(),
                     dateChip!!.tag.toString()
                 )
                 viewModel.insertTransaction(transaction)
-                Log.i("t", "${transaction.categoryId} ${transaction.amount} ${transaction.note} ${transaction.date}")
                 dismiss()
             } else {
                 amountEditTextLayout.error = resources.getString(R.string.empty_field_error)
@@ -125,10 +141,15 @@ class TransactionDialog() : DialogFragment(), ItemEventListener {
     }
 
     override fun OnItemClick(category: Category) {
-        categoryChip!!.tag = category.id
+        selectedCategory = category
         categoryChip!!.text = category.title
         categoryChip!!.chipIcon = BitmapDrawable(category.image)
         bottomSheet!!.dismiss()
     }
+}
 
+interface DialogListener {
+    fun OnAddNewTransaction(transaction: Transaction)
+
+    fun OnEditText(transaction: Transaction)
 }

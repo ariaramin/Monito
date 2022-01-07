@@ -7,6 +7,8 @@ class CategoryRepository(private val db: AppDatabase) {
 
     fun insertCategory(category: Category) = db.getCategoryDao().addCategory(category)
 
+    fun getAllCategories() = db.getCategoryDao().getAllCategories()
+
     fun getIncomeCategories() = db.getCategoryDao().getIncomeCategories()
 
     fun getExpenseCategories() = db.getCategoryDao().getExpenseCategories()

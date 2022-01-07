@@ -16,8 +16,8 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
 
     override fun createFragment(position: Int): Fragment {
         when(position) {
-            0 -> return IncomeCategoriesFragment()
+            0 -> return ExpenseCategoriesFragment()
         }
-        return ExpenseCategoriesFragment()
+        return IncomeCategoriesFragment()
     }
 }
