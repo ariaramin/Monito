@@ -9,7 +9,9 @@
     <string name="ok">باشه</string>
     <string name="cancel">بیخیال</string>
     <string name="today">امروز</string>
+    <string name="date_hint">تاریخ</string>
     <string name="note_hint">یادداشت</string>
+    <string name="note_input_hint">یادداشتی بنویسید</string>
     <string name="amount_hint">مبلغ</string>
     <string name="empty_field_error">مبلغ نباید خالی باشد</string>
     <string name="category">دسته‌بندی</string>

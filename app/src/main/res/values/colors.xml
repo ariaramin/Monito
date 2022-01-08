@@ -7,10 +7,10 @@
 <!--    <color name="yellow_500">#FFC107</color>-->
     <color name="primaryColor">#7CCDAD</color>
     <color name="primaryDarkColor">#56C596</color>
-    <color name="accentColor">#CFF4D2</color>
+<!--    <color name="accentColor">#CFF4D2</color>-->
     <color name="secondaryColor">#FB607F</color>
     <color name="green_500">#FADADD</color>
-    <color name="yellow_500">#FF91A4</color>
+    <color name="accentColor">#FF91A4</color>
 
     <color name="grey_500">#9e9e9e</color>
     <color name="grey_400">#bdbdbd</color>

@@ -49,7 +49,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/textView6"
+                            android:id="@+id/totalTransactionsTextView"
                             android:layout_width="0dp"
                             android:layout_height="46dp"
                             android:text="۰"
@@ -76,9 +76,9 @@
                             android:text="تومان"
                             android:textColor="@color/white"
                             android:textSize="24sp"
-                            app:layout_constraintEnd_toEndOf="@+id/textView6"
-                            app:layout_constraintStart_toStartOf="@+id/textView6"
-                            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                            app:layout_constraintEnd_toEndOf="@+id/totalTransactionsTextView"
+                            app:layout_constraintStart_toStartOf="@+id/totalTransactionsTextView"
+                            app:layout_constraintTop_toBottomOf="@+id/totalTransactionsTextView" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </TableRow>
@@ -114,7 +114,7 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
-                                android:id="@+id/textView4"
+                                android:id="@+id/totalIncomeTextView"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:text="۰"
@@ -141,9 +141,9 @@
                                 android:text="@string/toman"
                                 android:textColor="@color/white"
                                 android:textSize="16sp"
-                                app:layout_constraintEnd_toEndOf="@+id/textView4"
-                                app:layout_constraintStart_toStartOf="@+id/textView4"
-                                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                                app:layout_constraintEnd_toEndOf="@+id/totalIncomeTextView"
+                                app:layout_constraintStart_toStartOf="@+id/totalIncomeTextView"
+                                app:layout_constraintTop_toBottomOf="@+id/totalIncomeTextView" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </com.google.android.material.card.MaterialCardView>
@@ -174,7 +174,7 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
-                                android:id="@+id/textView8"
+                                android:id="@+id/totalExpensesTextView"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:text="۰"
@@ -201,9 +201,9 @@
                                 android:text="@string/toman"
                                 android:textColor="@color/white"
                                 android:textSize="16sp"
-                                app:layout_constraintEnd_toEndOf="@+id/textView8"
-                                app:layout_constraintStart_toStartOf="@+id/textView8"
-                                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                                app:layout_constraintEnd_toEndOf="@+id/totalExpensesTextView"
+                                app:layout_constraintStart_toStartOf="@+id/totalExpensesTextView"
+                                app:layout_constraintTop_toBottomOf="@+id/totalExpensesTextView" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </com.google.android.material.card.MaterialCardView>
@@ -215,14 +215,28 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/transactionRecyclerView"
+    <ImageView
+        android:id="@+id/backgroundImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="256dp"
+        android:layout_margin="52dp"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        app:srcCompat="@drawable/bg_image" />
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/transactionRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp" />
+    </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"

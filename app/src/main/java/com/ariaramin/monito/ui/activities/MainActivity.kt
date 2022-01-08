@@ -1,12 +1,16 @@
 package com.ariaramin.monito.ui.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +24,7 @@ import com.ariaramin.monito.Dialogs.TransactionDialog
 import com.ariaramin.monito.Models.*
 import com.ariaramin.monito.Repositories.CategoryRepository
 import com.ariaramin.monito.Repositories.TransactionRepository
+import com.ariaramin.monito.Utils.Utils
 import com.ariaramin.monito.ViewModels.CategoryViewModel
 import com.ariaramin.monito.ViewModels.CategoryViewModelFactory
 import com.ariaramin.monito.ViewModels.TransactionViewModel
@@ -39,7 +44,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        backgroundImage = findViewById<ImageView>(R.id.backgroundImageView)
+        backgroundImage = findViewById<ImageView>(R.id.backgroundImageView)
+        val totalTextView = findViewById<TextView>(R.id.totalTransactionsTextView)
+        val totalExpensesTextView = findViewById<TextView>(R.id.totalExpensesTextView)
+        val totalIncomesTextView = findViewById<TextView>(R.id.totalIncomeTextView)
+        val recyclerView = findViewById<RecyclerView>(R.id.transactionRecyclerView)
 
         val database = AppDatabase.getInstance(applicationContext)
         val transactionRepository = TransactionRepository(database)
@@ -49,48 +58,18 @@ class MainActivity : AppCompatActivity() {
 
         generalItemAdapter = GeneralItemAdapter(this)
         val layoutManager = LinearLayoutManager(this)
-        val recyclerView = findViewById<RecyclerView>(R.id.transactionRecyclerView)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = generalItemAdapter
         transactionViewModel.getAllTransactions().observe(this,
             { t ->
                 if (generalItemAdapter.itemCount <= 0) {
-                    var date = ""
-                    var total = 0
-                    val dateList: MutableList<DateItem> = ArrayList()
-                    val generalItemList: MutableList<GeneralItem> = ArrayList()
-                    for (transaction in t) {
-                        if (transaction.date != date) {
-                            if (total != 0 && date != "") {
-                                val dateItem = DateItem(date, total.toString())
-                                dateList.add(dateItem)
-                            }
-                            date = transaction.date
-                            if (total != 0) {
-                                total = if (transaction.category.type == "income")
-                                    transaction.amount.toInt() else
-                                    -transaction.amount.toInt()
-                            } else {
-                                if (transaction.category.type == "income")
-                                    total += transaction.amount.toInt() else
-                                    total -= transaction.amount.toInt()
-                            }
-                        } else {
-                            if (transaction.category.type == "income")
-                                total += transaction.amount.toInt() else
-                                total -= transaction.amount.toInt()
-                            if (total != 0 && t.last() == transaction) {
-                                val dateItem = DateItem(date, total.toString())
-                                dateList.add(dateItem)
-                            }
-                        }
-                    }
-                    for (dateItem in dateList) {
-                        val transactions = t.filter { it -> it.date == dateItem.date }
-                        val generalItem = GeneralItem(dateItem, transactions)
-                        generalItemList.add(generalItem)
-                    }
-                    generalItemAdapter.addItemList(generalItemList)
+                    convertToGeneralItem(t)
+                    totalIncomesTextView.text = totalIncomesTransactions(t)
+                    totalExpensesTextView.text = totalExpensesTransactions(t)
+                    totalTextView.text = totalTransactions(t)
+                    backgroundImage!!.visibility = GONE
+                } else {
+                    backgroundImage!!.visibility = VISIBLE
                 }
             }
         )
@@ -108,10 +87,6 @@ class MainActivity : AppCompatActivity() {
         val bottomAppBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
         bottomAppBar.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.home -> {
-
-                    true
-                }
                 R.id.chart -> {
                     true
                 }
@@ -124,9 +99,80 @@ class MainActivity : AppCompatActivity() {
 
         val fab = findViewById<FloatingActionButton>(R.id.floatingActionButton)
         fab.setOnClickListener {
-            val dialog = TransactionDialog()
-            dialog.show(supportFragmentManager, null)
+            val intent = Intent(this, TransactionActivity::class.java)
+            startActivity(intent)
         }
+    }
+
+    private fun totalTransactions(transactions: List<Transaction>): String {
+        val utils = Utils()
+        var total = 0
+        for (transaction in transactions) {
+            if (transaction.category.type == "income")
+                total += transaction.amount.toInt() else
+                total -= transaction.amount.toInt()
+        }
+        return utils.convertPersianPrice(total.toString())
+    }
+
+    private fun totalIncomesTransactions(transactions: List<Transaction>): String {
+        val utils = Utils()
+        var total = 0
+        val incomeTransactions = transactions.filter { it.category.type == "income" }
+        for (transaction in incomeTransactions) {
+            total += transaction.amount.toInt()
+        }
+        return utils.convertPersianPrice(total.toString())
+    }
+
+    private fun totalExpensesTransactions(transactions: List<Transaction>): String {
+        val utils = Utils()
+        var total = 0
+        val expenseTransactions = transactions.filter { it.category.type == "expense" }
+        for (transaction in expenseTransactions) {
+            total += transaction.amount.toInt()
+        }
+        return utils.convertPersianPrice(total.toString())
+    }
+
+    private fun convertToGeneralItem(transactions: List<Transaction>) {
+        var date = ""
+        var total = 0
+        val dateList: MutableList<DateItem> = ArrayList()
+        val generalItemList: MutableList<GeneralItem> = ArrayList()
+        for (transaction in transactions) {
+            if (transaction.date != date) {
+                if (total != 0 && date != "") {
+                    val dateItem = DateItem(date, total.toString())
+                    dateList.add(dateItem)
+                }
+                date = transaction.date
+                if (total != 0) {
+                    total = if (transaction.category.type == "income")
+                        transaction.amount.toInt() else
+                        -transaction.amount.toInt()
+                } else {
+                    if (transaction.category.type == "income")
+                        total += transaction.amount.toInt() else
+                        total -= transaction.amount.toInt()
+                }
+            } else {
+                if (transaction.category.type == "income")
+                    total += transaction.amount.toInt() else
+                    total -= transaction.amount.toInt()
+                if (total != 0 && transactions.last() == transaction) {
+                    val dateItem = DateItem(date, total.toString())
+                    dateList.add(dateItem)
+                }
+            }
+        }
+        val sortedDateList = dateList.sortedBy { dateItem -> dateItem.date }
+        for (dateItem in sortedDateList) {
+            val transactionList = transactions.filter { it.date == dateItem.date }
+            val generalItem = GeneralItem(dateItem, transactionList)
+            generalItemList.add(generalItem)
+        }
+        generalItemAdapter.addItemList(generalItemList)
     }
 
     private fun insertCategories() {
@@ -206,6 +252,11 @@ class MainActivity : AppCompatActivity() {
                 "موبایل",
                 "expense",
                 ContextCompat.getDrawable(applicationContext, R.drawable.iphone)!!.toBitmap()
+            ),
+            Category(
+                "اینترنت",
+                "expense",
+                ContextCompat.getDrawable(applicationContext, R.drawable.internet)!!.toBitmap()
             ),
             Category(
                 "تحصیل",
