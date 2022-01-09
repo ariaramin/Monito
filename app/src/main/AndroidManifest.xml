@@ -11,7 +11,8 @@
         android:theme="@style/Theme.Monito">
         <activity
             android:name=".ui.activities.TransactionActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.activities.SplashScreen"
             android:exported="true">

@@ -3,24 +3,18 @@ package com.ariaramin.monito.ui.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ariaramin.monito.Adapters.GeneralItemAdapter
-import com.ariaramin.monito.Adapters.TransactionAdapter
 import com.ariaramin.monito.Database.AppDatabase
-import com.ariaramin.monito.Dialogs.DialogListener
 import com.ariaramin.monito.R
-import com.ariaramin.monito.Dialogs.TransactionDialog
 import com.ariaramin.monito.Models.*
 import com.ariaramin.monito.Repositories.CategoryRepository
 import com.ariaramin.monito.Repositories.TransactionRepository
@@ -37,8 +31,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var categoryViewModel: CategoryViewModel
     private lateinit var transactionViewModel: TransactionViewModel
-    lateinit var generalItemAdapter: GeneralItemAdapter
     private var backgroundImage: ImageView? = null
+    lateinit var generalItemAdapter: GeneralItemAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,14 +57,15 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = generalItemAdapter
         transactionViewModel.getAllTransactions().observe(this,
             { t ->
-                if (generalItemAdapter.itemCount <= 0) {
-                    convertToGeneralItem(t)
+                if (t.isEmpty()) {
+                    backgroundImage!!.visibility = VISIBLE
+                } else {
+                    val generalItems = convertToDateItem(t.sortedBy { it.date })
                     totalIncomesTextView.text = totalIncomesTransactions(t)
                     totalExpensesTextView.text = totalExpensesTransactions(t)
                     totalTextView.text = totalTransactions(t)
+                    generalItemAdapter.addItemList(generalItems)
                     backgroundImage!!.visibility = GONE
-                } else {
-                    backgroundImage!!.visibility = VISIBLE
                 }
             }
         )
@@ -78,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         val categoryFactory = CategoryViewModelFactory(categoryRepository)
         categoryViewModel =
             ViewModelProvider(this, categoryFactory).get(CategoryViewModel::class.java)
-        categoryViewModel.getIncomeCategories().observe(this, {
+        categoryViewModel.getAllCategories().observe(this, {
             if (it.isEmpty()) {
                 insertCategories()
             }
@@ -102,6 +98,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, TransactionActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        generalItemAdapter.notifyDataSetChanged()
     }
 
     private fun totalTransactions(transactions: List<Transaction>): String {
@@ -135,7 +136,7 @@ class MainActivity : AppCompatActivity() {
         return utils.convertPersianPrice(total.toString())
     }
 
-    private fun convertToGeneralItem(transactions: List<Transaction>) {
+    private fun convertToDateItem(transactions: List<Transaction>): MutableList<GeneralItem> {
         var date = ""
         var total = 0
         val dateList: MutableList<DateItem> = ArrayList()
@@ -166,13 +167,14 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        val sortedDateList = dateList.sortedBy { dateItem -> dateItem.date }
+        val sortedDateList = dateList.distinct().sortedBy { dateItem -> dateItem.date }
         for (dateItem in sortedDateList) {
             val transactionList = transactions.filter { it.date == dateItem.date }
             val generalItem = GeneralItem(dateItem, transactionList)
             generalItemList.add(generalItem)
         }
-        generalItemAdapter.addItemList(generalItemList)
+
+        return generalItemList
     }
 
     private fun insertCategories() {

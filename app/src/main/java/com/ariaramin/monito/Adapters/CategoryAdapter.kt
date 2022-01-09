@@ -12,7 +12,7 @@ import com.ariaramin.monito.Models.Transaction
 import com.ariaramin.monito.R
 import com.bumptech.glide.Glide
 
-class CategoryAdapter(val itemEventListener: ItemEventListener) :
+class CategoryAdapter(val itemEventListener: CategoryItemListener) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     private var categories: MutableList<Category> = ArrayList()
@@ -57,6 +57,6 @@ class CategoryAdapter(val itemEventListener: ItemEventListener) :
     }
 }
 
-interface ItemEventListener {
+interface CategoryItemListener {
     fun OnItemClick(category: Category)
 }

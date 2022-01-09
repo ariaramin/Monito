@@ -25,6 +25,25 @@ class Utils {
         return number
     }
 
+    fun convertEnglishNumber(num: String): String {
+        var number = num
+        val numbers: HashMap<String, String> = HashMap()
+        numbers["۰"] = "0"
+        numbers["۱"] = "1"
+        numbers["۲"] = "2"
+        numbers["۳"] = "3"
+        numbers["۴"] = "4"
+        numbers["۵"] = "5"
+        numbers["۶"] = "6"
+        numbers["۷"] = "7"
+        numbers["۸"] = "8"
+        numbers["۹"] = "9"
+        for ((key, value) in numbers.entries) {
+            number = number.replace(key, value)
+        }
+        return number
+    }
+
     fun convertLongDate(date: String): String {
         val months: HashMap<String, String> = HashMap()
         months["01"] = "فروردین"

@@ -30,17 +30,6 @@ class GeneralItemAdapter(var context: Context) : RecyclerView.Adapter<GeneralIte
         return generalItemList.size
     }
 
-//    fun addTransactionItem(transaction: Transaction) {
-//        for (item in generalItemList) {
-//            for (date in item.dateItem.date) {
-//                val transactions = item.transactionList.filter { it -> it.date == date.toString() }
-//                val generalItem = GeneralItem(item.dateItem, transactions)
-//                generalItemList.add(generalItem)
-//            }
-//        }
-//        notifyItemInserted()
-//    }
-
     fun addItemList(generalItems: List<GeneralItem>) {
         generalItemList.addAll(generalItems)
         notifyDataSetChanged()
