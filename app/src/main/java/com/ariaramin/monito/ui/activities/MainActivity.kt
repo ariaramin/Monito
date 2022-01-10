@@ -100,11 +100,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        generalItemAdapter.notifyDataSetChanged()
-    }
-
     private fun totalTransactions(transactions: List<Transaction>): String {
         val utils = Utils()
         var total = 0

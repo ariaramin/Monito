@@ -31,6 +31,7 @@ class GeneralItemAdapter(var context: Context) : RecyclerView.Adapter<GeneralIte
     }
 
     fun addItemList(generalItems: List<GeneralItem>) {
+        generalItemList.clear()
         generalItemList.addAll(generalItems)
         notifyDataSetChanged()
     }
@@ -45,12 +46,12 @@ class GeneralItemAdapter(var context: Context) : RecyclerView.Adapter<GeneralIte
             dateTextView.text = utils.convertLongDate(generalItem.dateItem.date)
             totalTextView.text = utils.convertPersianPrice(generalItem.dateItem.total)
             val transactionAdapter = TransactionAdapter(itemView.context)
-            transactionAdapter.addItemList(generalItem.transactionList)
             val layoutManager = LinearLayoutManager(itemView.context)
             val dividerItemDecoration = DividerItemDecoration(itemView.context, layoutManager.orientation)
             transactionRecyclerView.layoutManager = layoutManager
             transactionRecyclerView.addItemDecoration(dividerItemDecoration)
             transactionRecyclerView.adapter = transactionAdapter
+            transactionAdapter.addItemList(generalItem.transactionList)
         }
     }
 

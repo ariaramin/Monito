@@ -2,6 +2,8 @@ package com.ariaramin.monito.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.*
 import androidx.lifecycle.ViewModelProvider
 import com.ariaramin.monito.Adapters.CategoryItemListener
@@ -51,6 +53,11 @@ class TransactionActivity : AppCompatActivity(), CategoryItemListener {
             finish()
         }
 
+        // Choose category bottom sheet
+        bottomSheet = CategoriesBottomSheet()
+        bottomSheet!!.isCancelable = false
+        bottomSheet!!.show(supportFragmentManager, bottomSheet!!.tag)
+
         amountEditText = findViewById<EditText>(R.id.resultEditText)
         calculateEditText = findViewById<EditText>(R.id.calculateEditText)
         val categoryLayout = findViewById<RelativeLayout>(R.id.selectCategoryLayout)
@@ -68,22 +75,43 @@ class TransactionActivity : AppCompatActivity(), CategoryItemListener {
         }
         val noteEditText = findViewById<EditText>(R.id.noteEditText)
         val saveButton = findViewById<FloatingActionButton>(R.id.saveFab)
-        saveButton.setOnClickListener {
-            val category = selectedCategory!!
-            val note = noteEditText.text.toString()
-            val amount =
-                if (amountEditText!!.text.isEmpty()) "0" else amountEditText!!.text.toString()
-            val date = dateTextView!!.tag.toString()
 
-            val transaction = Transaction(
-                category,
-                note,
-                amount,
-                date
-            )
-            viewModel.insertTransaction(transaction)
-            finish()
+        if (selectedCategory == null || amountEditText!!.text.isEmpty()) {
+            saveButton.setOnClickListener(null)
         }
+
+        amountEditText!!.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (selectedCategory == null || amountEditText!!.text.isEmpty()) {
+                    saveButton.setOnClickListener(null)
+                } else {
+                    saveButton.setOnClickListener {
+                        val category = selectedCategory!!
+                        val note = noteEditText.text.toString()
+                        val amount =
+                            if (amountEditText!!.text.isEmpty()) "0" else amountEditText!!.text.toString()
+                        val date = dateTextView!!.tag.toString()
+                        val transaction = Transaction(
+                            category,
+                            note,
+                            amount,
+                            date
+                        )
+                        viewModel.insertTransaction(transaction)
+                        finish()
+                    }
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+        })
 
         val zeroBtn = findViewById<Button>(R.id.zeroBtn)
         zeroBtn.setOnClickListener {
