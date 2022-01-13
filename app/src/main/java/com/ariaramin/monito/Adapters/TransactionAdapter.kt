@@ -1,6 +1,7 @@
 package com.ariaramin.monito.Adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -13,12 +14,12 @@ import com.ariaramin.monito.R
 import com.ariaramin.monito.Utils.Utils
 
 
-class TransactionAdapter(var context: Context) : RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>() {
+class TransactionAdapter(val itemEventListener: TransactionItemListener) : RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>() {
 
     private var transactions: MutableList<Transaction> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {
-        val inflater = LayoutInflater.from(context).inflate(R.layout.transaction_item, parent, false)
+        val inflater = LayoutInflater.from(parent.context).inflate(R.layout.transaction_item, parent, false)
         return TransactionViewHolder(inflater)
     }
 
@@ -40,7 +41,7 @@ class TransactionAdapter(var context: Context) : RecyclerView.Adapter<Transactio
         notifyDataSetChanged()
     }
 
-    class TransactionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class TransactionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val categoryImageView = itemView.findViewById<ImageView>(R.id.transactionCategoryImageView)
         val titleTextView = itemView.findViewById<TextView>(R.id.categoryTitleTextView)
         val noteTextView = itemView.findViewById<TextView>(R.id.noteTextView)
@@ -60,6 +61,14 @@ class TransactionAdapter(var context: Context) : RecyclerView.Adapter<Transactio
             } else {
                 amountTextView.text = "${utils.convertPersianPrice(transaction.amount)}-"
             }
+
+            itemView.setOnClickListener {
+                itemEventListener.OnItemClick(itemView.context, transaction)
+            }
         }
     }
+}
+
+interface TransactionItemListener {
+    fun OnItemClick(context: Context, transaction: Transaction)
 }

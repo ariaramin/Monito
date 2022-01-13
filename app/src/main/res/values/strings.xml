@@ -16,7 +16,8 @@
     <string name="empty_field_error">مبلغ نباید خالی باشد</string>
     <string name="category">دسته‌بندی</string>
     <string name="save_transaction">ذخیره</string>
-
+    <string name="delete">حذف</string>
+    <string name="edit">ویرایش</string>
     <string name="zero">0</string>
     <string name="one">1</string>
     <string name="two">2</string>

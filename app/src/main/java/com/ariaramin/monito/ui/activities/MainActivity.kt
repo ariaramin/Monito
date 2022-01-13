@@ -1,18 +1,23 @@
 package com.ariaramin.monito.ui.activities
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ariaramin.monito.Adapters.GeneralItemAdapter
+import com.ariaramin.monito.Adapters.TransactionItemListener
 import com.ariaramin.monito.Database.AppDatabase
 import com.ariaramin.monito.R
 import com.ariaramin.monito.Models.*
@@ -24,16 +29,23 @@ import com.ariaramin.monito.ViewModels.CategoryViewModelFactory
 import com.ariaramin.monito.ViewModels.TransactionViewModel
 import com.ariaramin.monito.ViewModels.TransactionViewModelFactory
 import com.google.android.material.bottomappbar.BottomAppBar
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import androidx.annotation.NonNull
+import androidx.core.graphics.drawable.toDrawable
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), TransactionItemListener {
 
     private lateinit var categoryViewModel: CategoryViewModel
     private lateinit var transactionViewModel: TransactionViewModel
     private var backgroundImage: ImageView? = null
     lateinit var generalItemAdapter: GeneralItemAdapter
+    private val utils = Utils()
 
+    companion object {
+        private var dialog: MaterialAlertDialogBuilder? = null
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +57,7 @@ class MainActivity : AppCompatActivity() {
         val totalIncomesTextView = findViewById<TextView>(R.id.totalIncomeTextView)
         val recyclerView = findViewById<RecyclerView>(R.id.transactionRecyclerView)
 
+        dialog = MaterialAlertDialogBuilder(this)
         val database = AppDatabase.getInstance(applicationContext)
         val transactionRepository = TransactionRepository(database)
         val transactionFactory = TransactionViewModelFactory(transactionRepository)
@@ -57,14 +70,15 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = generalItemAdapter
         transactionViewModel.getAllTransactions().observe(this,
             { t ->
+                val generalItems = convertToDateItem(t.sortedBy { it.date })
+                totalIncomesTextView.text = totalIncomesTransactions(t)
+                totalExpensesTextView.text = totalExpensesTransactions(t)
+                totalTextView.text = totalTransactions(t)
+                generalItemAdapter.addItemList(generalItems)
                 if (t.isEmpty()) {
                     backgroundImage!!.visibility = VISIBLE
+                    generalItemAdapter.notifyDataSetChanged()
                 } else {
-                    val generalItems = convertToDateItem(t.sortedBy { it.date })
-                    totalIncomesTextView.text = totalIncomesTransactions(t)
-                    totalExpensesTextView.text = totalExpensesTransactions(t)
-                    totalTextView.text = totalTransactions(t)
-                    generalItemAdapter.addItemList(generalItems)
                     backgroundImage!!.visibility = GONE
                 }
             }
@@ -96,12 +110,12 @@ class MainActivity : AppCompatActivity() {
         val fab = findViewById<FloatingActionButton>(R.id.floatingActionButton)
         fab.setOnClickListener {
             val intent = Intent(this, TransactionActivity::class.java)
+            intent.putExtra("status", 1)
             startActivity(intent)
         }
     }
 
     private fun totalTransactions(transactions: List<Transaction>): String {
-        val utils = Utils()
         var total = 0
         for (transaction in transactions) {
             if (transaction.category.type == "income")
@@ -112,7 +126,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun totalIncomesTransactions(transactions: List<Transaction>): String {
-        val utils = Utils()
         var total = 0
         val incomeTransactions = transactions.filter { it.category.type == "income" }
         for (transaction in incomeTransactions) {
@@ -122,7 +135,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun totalExpensesTransactions(transactions: List<Transaction>): String {
-        val utils = Utils()
         var total = 0
         val expenseTransactions = transactions.filter { it.category.type == "expense" }
         for (transaction in expenseTransactions) {
@@ -151,6 +163,10 @@ class MainActivity : AppCompatActivity() {
                     if (transaction.category.type == "income")
                         total += transaction.amount.toInt() else
                         total -= transaction.amount.toInt()
+                    if (total != 0 && transactions.last() == transaction) {
+                        val dateItem = DateItem(date, total.toString())
+                        dateList.add(dateItem)
+                    }
                 }
             } else {
                 if (transaction.category.type == "income")
@@ -316,5 +332,11 @@ class MainActivity : AppCompatActivity() {
         for (category in categoryList) {
             categoryViewModel.insertCategory(category)
         }
+    }
+
+    override fun OnItemClick(context: Context, transaction: Transaction) {
+        val intent = Intent(context.applicationContext, TransactionActionActivity::class.java)
+        intent.putExtra("transaction", transaction)
+        context.startActivity(intent)
     }
 }

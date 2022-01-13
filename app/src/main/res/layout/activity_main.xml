@@ -55,7 +55,7 @@
                             android:gravity="right"
                             android:text="۰"
                             android:textColor="@color/white"
-                            android:textDirection="rtl"
+                            android:textDirection="ltr"
                             android:textSize="34sp"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toStartOf="@+id/imageView"
@@ -232,7 +232,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
@@ -244,6 +244,7 @@
         app:backgroundTint="@color/primaryColor"
         app:elevation="12dp"
         app:fabAlignmentMode="end"
+        app:fabAnimationMode="scale"
         app:fabCradleMargin="6dp"
         app:hideOnScroll="true"
         app:menu="@menu/bottom_app_bar" />
@@ -252,10 +253,10 @@
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fadeScrollbars="true"
         app:backgroundTint="@color/secondaryColor"
         app:fabSize="auto"
         app:layout_anchor="@id/bottomAppBar"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
         app:maxImageSize="22dp"
         app:srcCompat="@drawable/ic_plus"
         app:tint="@color/white" />

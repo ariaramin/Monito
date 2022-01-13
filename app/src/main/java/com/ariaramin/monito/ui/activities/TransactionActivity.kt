@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
+import android.view.View
 import android.widget.*
 import androidx.lifecycle.ViewModelProvider
 import com.ariaramin.monito.Adapters.CategoryItemListener
@@ -29,9 +31,11 @@ class TransactionActivity : AppCompatActivity(), CategoryItemListener {
     private var amountEditText: EditText? = null
     private var calculateEditText: EditText? = null
     private var dateTextView: TextView? = null
+    private var noteEditText: EditText? = null
     private val utils = Utils()
 
     companion object {
+        private var STATUS_ID: Int? = null
         private var bottomSheet: CategoriesBottomSheet? = null
         private var selectedCategory: Category? = null
         private var categoryImageView: ImageView? = null
@@ -41,6 +45,15 @@ class TransactionActivity : AppCompatActivity(), CategoryItemListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_transaction)
+
+        val bundle = intent.extras
+        var transaction: Transaction? = null
+        if (bundle != null) {
+            STATUS_ID = bundle.getInt("status")
+            if (STATUS_ID == 2) {
+                transaction = bundle.getParcelable<Transaction>("transaction") as Transaction
+            }
+        }
 
         val database = AppDatabase.getInstance(applicationContext)
         val transactionRepository = TransactionRepository(database)
@@ -54,9 +67,11 @@ class TransactionActivity : AppCompatActivity(), CategoryItemListener {
         }
 
         // Choose category bottom sheet
-        bottomSheet = CategoriesBottomSheet()
-        bottomSheet!!.isCancelable = false
-        bottomSheet!!.show(supportFragmentManager, bottomSheet!!.tag)
+        if (STATUS_ID != 2) {
+            bottomSheet = CategoriesBottomSheet()
+            bottomSheet!!.isCancelable = false
+            bottomSheet!!.show(supportFragmentManager, bottomSheet!!.tag)
+        }
 
         amountEditText = findViewById<EditText>(R.id.resultEditText)
         calculateEditText = findViewById<EditText>(R.id.calculateEditText)
@@ -73,10 +88,41 @@ class TransactionActivity : AppCompatActivity(), CategoryItemListener {
         dateLayout.setOnClickListener {
             showDatePicker()
         }
-        val noteEditText = findViewById<EditText>(R.id.noteEditText)
+        noteEditText = findViewById<EditText>(R.id.noteEditText)
         val saveButton = findViewById<FloatingActionButton>(R.id.saveFab)
+        val saveButtonClickListener = View.OnClickListener {
+            val category = selectedCategory!!
+            val note = noteEditText!!.text.toString()
+            val amount =
+                if (amountEditText!!.text.isEmpty()) "0" else amountEditText!!.text.toString()
+            val date = dateTextView!!.tag.toString()
 
-        if (selectedCategory == null || amountEditText!!.text.isEmpty()) {
+            if (STATUS_ID == 2 && transaction != null) {
+                transaction.category = category
+                transaction.note = note
+                transaction.amount = amount
+                transaction.date = date
+                viewModel.updateTransaction(transaction)
+            } else {
+                val newTransaction = Transaction(
+                    category,
+                    note,
+                    amount,
+                    date
+                )
+                viewModel.insertTransaction(newTransaction)
+            }
+            finish()
+        }
+        saveButton.setOnClickListener(saveButtonClickListener)
+
+        if (STATUS_ID == 2 && transaction != null) {
+            setTransactionInfo(transaction)
+        }
+
+        if (transaction != null && amountEditText!!.text.isEmpty()) {
+            saveButton.setOnClickListener(null)
+        } else if (transaction == null && selectedCategory == null || amountEditText!!.text.isEmpty()) {
             saveButton.setOnClickListener(null)
         }
 
@@ -86,24 +132,12 @@ class TransactionActivity : AppCompatActivity(), CategoryItemListener {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (selectedCategory == null || amountEditText!!.text.isEmpty()) {
+                if (transaction != null && amountEditText!!.text.isEmpty()) {
+                    saveButton.setOnClickListener(null)
+                } else if (transaction == null && selectedCategory == null || amountEditText!!.text.isEmpty()) {
                     saveButton.setOnClickListener(null)
                 } else {
-                    saveButton.setOnClickListener {
-                        val category = selectedCategory!!
-                        val note = noteEditText.text.toString()
-                        val amount =
-                            if (amountEditText!!.text.isEmpty()) "0" else amountEditText!!.text.toString()
-                        val date = dateTextView!!.tag.toString()
-                        val transaction = Transaction(
-                            category,
-                            note,
-                            amount,
-                            date
-                        )
-                        viewModel.insertTransaction(transaction)
-                        finish()
-                    }
+                    saveButton.setOnClickListener(saveButtonClickListener)
                 }
             }
 
@@ -282,6 +316,19 @@ class TransactionActivity : AppCompatActivity(), CategoryItemListener {
                 }
             })
         picker.show()
+    }
+
+    private fun setTransactionInfo(transaction: Transaction) {
+        amountEditText!!.setText(utils.convertPersianNumber(transaction.amount))
+        amountEditText!!.setSelection(transaction.amount.length)
+        calculateEditText!!.setText(utils.convertPersianNumber(transaction.amount))
+        calculateEditText!!.setSelection(transaction.amount.length)
+        categoryImageView!!.setImageBitmap(transaction.category.image)
+        categoryTextView!!.text = transaction.category.title
+        selectedCategory = transaction.category
+        dateTextView!!.tag = transaction.date
+        dateTextView!!.text = utils.convertLongDate(transaction.date)
+        noteEditText!!.setText(transaction.note)
     }
 
     override fun OnItemClick(category: Category) {

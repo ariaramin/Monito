@@ -12,6 +12,7 @@ import com.ariaramin.monito.Models.GeneralItem
 import com.ariaramin.monito.Models.Transaction
 import com.ariaramin.monito.R
 import com.ariaramin.monito.Utils.Utils
+import com.ariaramin.monito.ui.activities.MainActivity
 
 class GeneralItemAdapter(var context: Context) : RecyclerView.Adapter<GeneralItemAdapter.GeneralItemViewHolder>() {
 
@@ -45,11 +46,9 @@ class GeneralItemAdapter(var context: Context) : RecyclerView.Adapter<GeneralIte
             val utils = Utils()
             dateTextView.text = utils.convertLongDate(generalItem.dateItem.date)
             totalTextView.text = utils.convertPersianPrice(generalItem.dateItem.total)
-            val transactionAdapter = TransactionAdapter(itemView.context)
+            val transactionAdapter = TransactionAdapter(MainActivity())
             val layoutManager = LinearLayoutManager(itemView.context)
-            val dividerItemDecoration = DividerItemDecoration(itemView.context, layoutManager.orientation)
             transactionRecyclerView.layoutManager = layoutManager
-            transactionRecyclerView.addItemDecoration(dividerItemDecoration)
             transactionRecyclerView.adapter = transactionAdapter
             transactionAdapter.addItemList(generalItem.transactionList)
         }
