@@ -257,7 +257,7 @@ class TransactionActivity : AppCompatActivity(), CategoryItemListener {
             try {
                 val expression = ExpressionBuilder(str).build()
                 val result = expression.evaluate()
-                amountEditText!!.setText(utils.convertPersianNumber(result.toInt().toString()))
+                amountEditText!!.setText(utils.convertPersianPrice(result.toInt().toString()))
             } catch (e: Exception) {
 
             }

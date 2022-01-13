@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">مانیتو</string>
 
-    <string name="cash">موجودی</string>
+    <string name="cash">باقی مانده</string>
     <string name="income">درآمد</string>
     <string name="expence">مخارج</string>
     <string name="toman">تومان</string>
@@ -15,6 +15,8 @@
     <string name="amount_hint">مبلغ</string>
     <string name="empty_field_error">مبلغ نباید خالی باشد</string>
     <string name="category">دسته‌بندی</string>
+    <string name="details">جزیات</string>
+    <string name="categories">دسته‌بندی ها</string>
     <string name="save_transaction">ذخیره</string>
     <string name="delete">حذف</string>
     <string name="edit">ویرایش</string>

@@ -1,6 +1,5 @@
 package com.ariaramin.monito.Adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,13 +7,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ariaramin.monito.Models.Category
-import com.ariaramin.monito.Models.Transaction
 import com.ariaramin.monito.R
-import com.bumptech.glide.Glide
+
 
 class CategoryAdapter(val itemEventListener: CategoryItemListener) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
+    var isClickable = true
     private var categories: MutableList<Category> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
@@ -47,11 +46,11 @@ class CategoryAdapter(val itemEventListener: CategoryItemListener) :
 
         fun bindData(category: Category) {
             titleTextView.text = category.title
-            Glide.with(itemView)
-                .load(category.image)
-                .into(categoryImageView)
-            itemView.setOnClickListener {
-                itemEventListener.OnItemClick(category)
+            categoryImageView.setImageBitmap(category.image)
+            if (isClickable) {
+                itemView.setOnClickListener {
+                    itemEventListener.OnItemClick(category)
+                }
             }
         }
     }

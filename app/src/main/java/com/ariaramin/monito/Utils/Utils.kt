@@ -26,7 +26,7 @@ class Utils {
     }
 
     fun convertEnglishNumber(num: String): String {
-        var number = num
+        var number = num.replace(",", "")
         val numbers: HashMap<String, String> = HashMap()
         numbers["۰"] = "0"
         numbers["۱"] = "1"

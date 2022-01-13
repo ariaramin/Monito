@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green_500"
+    android:layoutDirection="rtl"
+    tools:context=".ui.activities.CategoryActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/app_bar_background"
+        android:gravity="center"
+        android:layoutDirection="ltr"
+        android:minHeight="?attr/actionBarSize"
+        android:paddingStart="14dp"
+        android:paddingTop="14dp"
+        android:paddingEnd="14dp"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:id="@+id/backImageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:tint="@color/white"
+                app:srcCompat="?attr/homeAsUpIndicator" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="@string/categories"
+                android:textColor="@color/white"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout2"
+            app:tabTextAppearance="@style/TabItemText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:background="@null"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@color/secondaryColor"
+            app:tabIndicatorHeight="2dp"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/secondaryColor"
+            app:tabTextColor="@color/white">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/expence" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/income" />
+        </com.google.android.material.tabs.TabLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layoutDirection="ltr"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

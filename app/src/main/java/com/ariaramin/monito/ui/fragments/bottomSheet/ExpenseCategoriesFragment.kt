@@ -15,6 +15,7 @@ import com.ariaramin.monito.R
 import com.ariaramin.monito.Repositories.CategoryRepository
 import com.ariaramin.monito.ViewModels.CategoryViewModel
 import com.ariaramin.monito.ViewModels.CategoryViewModelFactory
+import com.ariaramin.monito.ui.activities.CategoryActivity
 import com.ariaramin.monito.ui.activities.TransactionActivity
 
 class ExpenseCategoriesFragment : Fragment() {
@@ -33,6 +34,9 @@ class ExpenseCategoriesFragment : Fragment() {
         viewModel = ViewModelProvider(this, factory).get(CategoryViewModel::class.java)
         val recyclerView = view.findViewById<RecyclerView>(R.id.categoriesRecyclerView)
         val adapter = CategoryAdapter(TransactionActivity())
+        if (requireContext() is CategoryActivity) {
+            adapter.isClickable = false
+        }
         val layoutManager = LinearLayoutManager(context)
         val dividerItemDecoration = DividerItemDecoration(context, layoutManager.orientation)
         recyclerView.layoutManager = layoutManager

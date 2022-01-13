@@ -1,6 +1,7 @@
 package com.ariaramin.monito.ui.fragments.bottomSheet
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import com.ariaramin.monito.R
 import com.ariaramin.monito.Repositories.CategoryRepository
 import com.ariaramin.monito.ViewModels.CategoryViewModel
 import com.ariaramin.monito.ViewModels.CategoryViewModelFactory
+import com.ariaramin.monito.ui.activities.CategoryActivity
 import com.ariaramin.monito.ui.activities.TransactionActivity
 
 class IncomeCategoriesFragment : Fragment() {
@@ -33,6 +35,9 @@ class IncomeCategoriesFragment : Fragment() {
         viewModel = ViewModelProvider(this, factory).get(CategoryViewModel::class.java)
         val recyclerView = view.findViewById<RecyclerView>(R.id.categoriesRecyclerView)
         val adapter = CategoryAdapter(TransactionActivity())
+        if (requireContext() is CategoryActivity) {
+            adapter.isClickable = false
+        }
         val layoutManager = LinearLayoutManager(context)
         val dividerItemDecoration = DividerItemDecoration(context, layoutManager.orientation)
         recyclerView.layoutManager = layoutManager

@@ -101,6 +101,8 @@ class MainActivity : AppCompatActivity(), TransactionItemListener {
                     true
                 }
                 R.id.category -> {
+                    val intent = Intent(this, CategoryActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 else -> false
