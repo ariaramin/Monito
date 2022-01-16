@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/green_500"
     android:layoutDirection="rtl"
-    tools:context=".ui.activities.CategoryActivity">
+    tools:context=".ui.activities.ChartActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -19,6 +19,7 @@
         android:paddingStart="14dp"
         android:paddingTop="14dp"
         android:paddingEnd="14dp"
+        android:paddingBottom="6dp"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,44 +43,21 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:text="@string/categories"
+                android:text="@string/chart"
                 android:textColor="@color/white"
                 android:textSize="32sp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout2"
-            app:tabTextAppearance="@style/TabItemText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:background="@null"
-            app:tabGravity="fill"
-            app:tabIndicatorColor="@color/secondaryColor"
-            app:tabIndicatorHeight="2dp"
-            app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/secondaryColor"
-            app:tabTextColor="@color/white">
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/expence" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/income" />
-        </com.google.android.material.tabs.TabLayout>
-
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager2"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/categoryPercentageRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layoutDirection="ltr"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

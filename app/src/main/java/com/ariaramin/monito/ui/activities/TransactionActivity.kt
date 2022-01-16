@@ -94,7 +94,7 @@ class TransactionActivity : AppCompatActivity(), CategoryItemListener {
             val category = selectedCategory!!
             val note = noteEditText!!.text.toString()
             val amount =
-                if (amountEditText!!.text.isEmpty()) "0" else amountEditText!!.text.toString()
+                if (amountEditText!!.text.isEmpty()) "0" else utils.convertEnglishNumber(amountEditText!!.text.toString())
             val date = dateTextView!!.tag.toString()
 
             if (STATUS_ID == 2 && transaction != null) {

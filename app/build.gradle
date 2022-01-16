@@ -58,6 +58,4 @@ dependencies {
     implementation 'com.github.aliab:Persian-Date-Picker-Dialog:1.7.1'
     // Expression
     implementation 'net.objecthunter:exp4j:0.4.8'
-    // MPAndroidChart
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

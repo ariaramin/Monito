@@ -28,7 +28,7 @@ class TransactionActionActivity : AppCompatActivity() {
         val editButton = findViewById<Button>(R.id.editButton)
         val deleteButton = findViewById<Button>(R.id.deleteButton)
 
-        val backToHome = findViewById<ImageView>(R.id.backImageView3)
+        val backToHome = findViewById<ImageView>(R.id.backImageView5)
         backToHome.setOnClickListener {
             finish()
         }

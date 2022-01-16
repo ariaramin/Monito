@@ -16,6 +16,7 @@
     <string name="empty_field_error">مبلغ نباید خالی باشد</string>
     <string name="category">دسته‌بندی</string>
     <string name="details">جزیات</string>
+    <string name="chart">نمودار</string>
     <string name="categories">دسته‌بندی ها</string>
     <string name="save_transaction">ذخیره</string>
     <string name="delete">حذف</string>

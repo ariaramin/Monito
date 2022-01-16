@@ -14,7 +14,7 @@ class CategoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
 
-        val backToHome = findViewById<ImageView>(R.id.backImageView3)
+        val backToHome = findViewById<ImageView>(R.id.backImageView5)
         backToHome.setOnClickListener {
             finish()
         }

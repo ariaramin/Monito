@@ -98,6 +98,8 @@ class MainActivity : AppCompatActivity(), TransactionItemListener {
         bottomAppBar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.chart -> {
+                    val intent = Intent(this, ChartActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.category -> {
