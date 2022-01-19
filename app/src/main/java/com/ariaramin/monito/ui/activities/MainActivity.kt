@@ -201,14 +201,9 @@ class MainActivity : AppCompatActivity(), TransactionItemListener {
     private fun insertCategories() {
         val categoryList = arrayListOf<Category>(
             Category(
-                "غذا",
+                "مواد غذایی",
                 "expense",
-                ContextCompat.getDrawable(applicationContext, R.drawable.food)!!.toBitmap()
-            ),
-            Category(
-                "میوه",
-                "expense",
-                ContextCompat.getDrawable(applicationContext, R.drawable.fruit)!!.toBitmap()
+                ContextCompat.getDrawable(applicationContext, R.drawable.groceries)!!.toBitmap()
             ),
             Category(
                 "خرید",
@@ -265,6 +260,11 @@ class MainActivity : AppCompatActivity(), TransactionItemListener {
                 "ماشین",
                 "expense",
                 ContextCompat.getDrawable(applicationContext, R.drawable.car)!!.toBitmap()
+            ),
+            Category(
+                "سوخت",
+                "expense",
+                ContextCompat.getDrawable(applicationContext, R.drawable.gas_pump)!!.toBitmap()
             ),
             Category(
                 "خانه",
