@@ -34,7 +34,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.annotation.NonNull
 import androidx.core.graphics.drawable.toDrawable
 
-
 class MainActivity : AppCompatActivity(), TransactionItemListener {
 
     private lateinit var categoryViewModel: CategoryViewModel
@@ -77,7 +76,6 @@ class MainActivity : AppCompatActivity(), TransactionItemListener {
                 generalItemAdapter.addItemList(generalItems)
                 if (t.isEmpty()) {
                     backgroundImage!!.visibility = VISIBLE
-                    generalItemAdapter.notifyDataSetChanged()
                 } else {
                     backgroundImage!!.visibility = GONE
                 }
@@ -152,6 +150,8 @@ class MainActivity : AppCompatActivity(), TransactionItemListener {
         var total = 0
         val dateList: MutableList<DateItem> = ArrayList()
         val generalItemList: MutableList<GeneralItem> = ArrayList()
+
+        // separate date and price from transaction
         for (transaction in transactions) {
             if (transaction.date != date) {
                 if (total != 0 && date != "") {
@@ -163,6 +163,10 @@ class MainActivity : AppCompatActivity(), TransactionItemListener {
                     total = if (transaction.category.type == "income")
                         transaction.amount.toInt() else
                         -transaction.amount.toInt()
+                    if (transactions.last() == transaction) {
+                        val dateItem = DateItem(date, total.toString())
+                        dateList.add(dateItem)
+                    }
                 } else {
                     if (transaction.category.type == "income")
                         total += transaction.amount.toInt() else
@@ -182,6 +186,8 @@ class MainActivity : AppCompatActivity(), TransactionItemListener {
                 }
             }
         }
+
+        // create general items
         val sortedDateList = dateList.distinct().sortedBy { dateItem -> dateItem.date }
         for (dateItem in sortedDateList) {
             val transactionList = transactions.filter { it.date == dateItem.date }

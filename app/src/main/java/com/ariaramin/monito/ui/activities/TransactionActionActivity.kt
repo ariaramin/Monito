@@ -46,7 +46,7 @@ class TransactionActionActivity : AppCompatActivity() {
         categoryTextView.text = transaction.category.title
         amountTextView.text = utils.convertPersianPrice(transaction.amount)
         dateTextView.text = utils.convertLongDate(transaction.date)
-        noteTextView.text = transaction.note
+        noteTextView.text = if (transaction.note.isNotEmpty()) transaction.note else resources.getString(R.string.no_note)
 
         editButton.setOnClickListener {
             val intent = Intent(this, TransactionActivity::class.java)

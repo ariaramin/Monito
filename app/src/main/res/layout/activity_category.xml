@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green_500"
+    android:background="@color/colorOnPrimary"
     android:layoutDirection="rtl"
     tools:context=".ui.activities.CategoryActivity">
 
@@ -50,7 +50,6 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout2"
-            app:tabTextAppearance="@style/TabItemText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
@@ -59,7 +58,8 @@
             app:tabIndicatorColor="@color/secondaryColor"
             app:tabIndicatorHeight="2dp"
             app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/secondaryColor"
+            app:tabSelectedTextColor="@color/accentColor"
+            app:tabTextAppearance="@style/TabItemText"
             app:tabTextColor="@color/white">
 
             <com.google.android.material.tabs.TabItem

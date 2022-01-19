@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green_500"
+    android:background="@color/colorOnPrimary"
     android:layoutDirection="rtl"
     tools:context=".ui.activities.TransactionActivity">
 
@@ -17,9 +17,9 @@
         android:layoutDirection="ltr"
         android:minHeight="?attr/actionBarSize"
         android:paddingStart="14dp"
-        android:paddingTop="14dp"
+        android:paddingTop="8dp"
         android:paddingEnd="14dp"
-        android:paddingBottom="6dp"
+        android:paddingBottom="4dp"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,8 +33,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="12dp">
+                android:layout_height="match_parent">
 
                 <ImageView
                     android:id="@+id/backImageView"
@@ -42,17 +41,12 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
+                    android:paddingTop="6dp"
+                    android:paddingEnd="6dp"
+                    android:paddingBottom="6dp"
                     android:tint="@color/white"
                     app:srcCompat="?attr/homeAsUpIndicator" />
 
-                <ImageView
-                    android:id="@+id/deleteImageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:visibility="gone"
-                    app:srcCompat="@drawable/ic_basket" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -95,199 +89,185 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ScrollView
-        android:id="@+id/scrollView2"
+    <androidx.cardview.widget.CardView
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="12dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="4dp"
+        app:contentPaddingBottom="4dp"
+        app:contentPaddingLeft="12dp"
+        app:contentPaddingRight="12dp"
+        app:contentPaddingTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <LinearLayout
-            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingStart="12dp"
-            android:paddingTop="16dp"
-            android:paddingEnd="12dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
+
+            <RelativeLayout
+                android:id="@+id/selectCategoryLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                app:cardBackgroundColor="@color/white"
-                app:contentPaddingBottom="4dp"
-                app:contentPaddingLeft="12dp"
-                app:contentPaddingRight="12dp"
-                app:contentPaddingTop="4dp">
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/selectCategoryImageView"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/ic_category_outline" />
 
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/selectCategoryImageView"
+                    android:layout_alignBottom="@id/selectCategoryImageView"
+                    android:layout_marginStart="12dp"
+                    android:layout_toEndOf="@+id/selectCategoryImageView"
+                    android:text="@string/category"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                    <RelativeLayout
-                        android:id="@+id/selectCategoryLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="6dp"
-                        android:paddingBottom="6dp">
+                <TextView
+                    android:id="@+id/selectCategoryTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="18dp"
+                    android:layout_toEndOf="@+id/textView10"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    tools:text="سایر" />
 
-                        <ImageView
-                            android:id="@+id/selectCategoryImageView"
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
-                            android:layout_alignParentStart="true"
-                            android:layout_centerVertical="true"
-                            app:srcCompat="@drawable/ic_category_outline" />
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/ic_left_arrow" />
 
-                        <TextView
-                            android:id="@+id/textView10"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignTop="@id/selectCategoryImageView"
-                            android:layout_alignBottom="@id/selectCategoryImageView"
-                            android:layout_marginStart="12dp"
-                            android:layout_toEndOf="@+id/selectCategoryImageView"
-                            android:text="@string/category"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+            </RelativeLayout>
 
-                        <TextView
-                            android:id="@+id/selectCategoryTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginStart="18dp"
-                            android:layout_toEndOf="@+id/textView10"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            tools:text="سایر" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@color/grey_400" />
 
-                        <ImageView
-                            android:id="@+id/imageView7"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            app:srcCompat="@drawable/ic_left_arrow" />
+            <RelativeLayout
+                android:id="@+id/selectDateLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp">
 
-                    </RelativeLayout>
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/ic_calendar" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:background="@color/grey_400" />
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/imageView6"
+                    android:layout_alignBottom="@id/imageView6"
+                    android:layout_marginStart="12dp"
+                    android:layout_toEndOf="@+id/imageView6"
+                    android:text="@string/date_hint"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                    <RelativeLayout
-                        android:id="@+id/selectDateLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="6dp"
-                        android:paddingBottom="6dp">
+                <TextView
+                    android:id="@+id/selectDateTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="18dp"
+                    android:layout_toEndOf="@+id/textView11"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    tools:text="۱۸ دی ۱۴۰۰" />
 
-                        <ImageView
-                            android:id="@+id/imageView6"
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
-                            android:layout_alignParentStart="true"
-                            android:layout_centerVertical="true"
-                            app:srcCompat="@drawable/ic_calendar" />
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/ic_left_arrow" />
 
-                        <TextView
-                            android:id="@+id/textView11"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignTop="@id/imageView6"
-                            android:layout_alignBottom="@id/imageView6"
-                            android:layout_marginStart="12dp"
-                            android:layout_toEndOf="@+id/imageView6"
-                            android:text="@string/date_hint"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+            </RelativeLayout>
 
-                        <TextView
-                            android:id="@+id/selectDateTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginStart="18dp"
-                            android:layout_toEndOf="@+id/textView11"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            tools:text="۱۸ دی ۱۴۰۰" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@color/grey_400" />
 
-                        <ImageView
-                            android:id="@+id/imageView8"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            app:srcCompat="@drawable/ic_left_arrow" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp">
 
-                    </RelativeLayout>
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/ic_pen" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:background="@color/grey_400" />
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/imageView9"
+                    android:layout_alignBottom="@id/imageView9"
+                    android:layout_marginStart="12dp"
+                    android:layout_toEndOf="@+id/imageView9"
+                    android:text="@string/note_hint"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="6dp"
-                        android:paddingBottom="6dp">
-
-                        <ImageView
-                            android:id="@+id/imageView9"
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
-                            android:layout_alignParentStart="true"
-                            android:layout_centerVertical="true"
-                            app:srcCompat="@drawable/ic_pen" />
-
-                        <TextView
-                            android:id="@+id/textView13"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignTop="@id/imageView9"
-                            android:layout_alignBottom="@id/imageView9"
-                            android:layout_marginStart="12dp"
-                            android:layout_toEndOf="@+id/imageView9"
-                            android:text="@string/note_hint"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                        <EditText
-                            android:id="@+id/noteEditText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="28dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginStart="18dp"
-                            android:layout_toEndOf="@+id/textView13"
-                            android:background="@null"
-                            android:hint="@string/note_input_hint"
-                            android:inputType="textPersonName"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/grey_500"
-                            android:textSize="16sp" />
-                    </RelativeLayout>
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
+                <EditText
+                    android:id="@+id/noteEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="18dp"
+                    android:layout_toEndOf="@+id/textView13"
+                    android:background="@null"
+                    android:hint="@string/note_input_hint"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grey_500"
+                    android:textSize="16sp" />
+            </RelativeLayout>
         </LinearLayout>
-    </ScrollView>
+
+    </androidx.cardview.widget.CardView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/saveFab"
@@ -329,7 +309,7 @@
                 <Button
                     android:id="@+id/oneBtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="64dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_button"
@@ -342,7 +322,7 @@
                 <Button
                     android:id="@+id/twoBtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="64dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_button"
@@ -355,7 +335,7 @@
                 <Button
                     android:id="@+id/threeBtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="64dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_button"
@@ -368,7 +348,7 @@
                 <ImageButton
                     android:id="@+id/deleteBtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="64dp"
+                    android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_button"
@@ -386,7 +366,7 @@
                 <Button
                     android:id="@+id/fourBtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="64dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_button"
@@ -399,7 +379,7 @@
                 <Button
                     android:id="@+id/fiveBtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="64dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_button"
@@ -412,7 +392,7 @@
                 <Button
                     android:id="@+id/sixBtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="64dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_button"
@@ -425,7 +405,7 @@
                 <Button
                     android:id="@+id/multiplicationBtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="64dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_button"
@@ -440,12 +420,12 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="90dp">
+                android:layout_height="match_parent">
 
                 <Button
                     android:id="@+id/sevenBtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="64dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_button"
@@ -458,7 +438,7 @@
                 <Button
                     android:id="@+id/eightBtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="64dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_button"
@@ -471,7 +451,7 @@
                 <Button
                     android:id="@+id/nineBtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="64dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_button"
@@ -484,7 +464,7 @@
                 <Button
                     android:id="@+id/minusBtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="64dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_button"
@@ -504,7 +484,7 @@
                 <Button
                     android:id="@+id/zeroBtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="64dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="@integer/material_motion_duration_long_2"
                     android:background="@drawable/rounded_button"
@@ -517,7 +497,7 @@
                 <Button
                     android:id="@+id/plusBtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="64dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_button"
@@ -530,7 +510,7 @@
                 <Button
                     android:id="@+id/divisionBtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="64dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_button"

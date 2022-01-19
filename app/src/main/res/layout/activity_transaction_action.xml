@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green_500"
+    android:background="@color/colorOnPrimary"
     android:layoutDirection="rtl"
     tools:context=".ui.activities.TransactionActionActivity">
 
@@ -35,6 +35,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:paddingTop="6dp"
+                android:paddingEnd="6dp"
+                android:paddingBottom="6dp"
                 android:tint="@color/white"
                 app:srcCompat="?attr/homeAsUpIndicator" />
 

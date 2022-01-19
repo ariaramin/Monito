@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green_500"
+    android:background="@color/colorOnPrimary"
     android:layoutDirection="rtl"
     tools:context=".ui.activities.MainActivity">
 
@@ -134,7 +134,7 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/income" />
+                                app:srcCompat="@drawable/salary" />
 
                             <TextView
                                 android:id="@+id/textView3"
@@ -194,7 +194,7 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/pay" />
+                                app:srcCompat="@drawable/get_money" />
 
                             <TextView
                                 android:id="@+id/textView7"

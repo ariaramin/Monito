@@ -1,7 +1,6 @@
 package com.ariaramin.monito.Adapters
 
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +8,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.ariaramin.monito.Models.Category
+import com.ariaramin.monito.Models.Entry
 import com.ariaramin.monito.Models.Transaction
 import com.ariaramin.monito.R
 import com.ariaramin.monito.Utils.Utils
@@ -19,9 +18,9 @@ import com.ariaramin.monito.Utils.Utils
 class CategoryPercentageAdapter :
     RecyclerView.Adapter<CategoryPercentageAdapter.CategoryPercentageViewHolder>() {
 
-    private val categoryList = ArrayList<Category>()
     private val transactionList = ArrayList<Transaction>()
-    private var categoryHashMap: HashMap<Category, String>? = null
+    private val colorList = ArrayList<Int>()
+    private val entryList = ArrayList<Entry>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -33,12 +32,16 @@ class CategoryPercentageAdapter :
     }
 
     override fun onBindViewHolder(holder: CategoryPercentageViewHolder, position: Int) {
-        val percentage = categoryHashMap!![categoryList[position]]
-        holder.bindDate(categoryList[position], percentage!!.toInt())
+        holder.bindDate(entryList[position].category, entryList[position].percentage, colorList[position])
     }
 
+
     override fun getItemCount(): Int {
-        return categoryList.size
+        return entryList.size
+    }
+
+    fun addColorList(colors: List<Int>) {
+        colorList.addAll(colors)
     }
 
     fun addTransactionList(transactions: List<Transaction>) {
@@ -46,10 +49,10 @@ class CategoryPercentageAdapter :
     }
 
     fun addCategoryHashMap(hashMap: HashMap<Category, String>) {
-        categoryHashMap = hashMap
+        entryList.clear()
         for (category in hashMap.keys) {
             if (hashMap[category]!!.toInt() != 0) {
-                categoryList.add(category)
+                entryList.add(Entry(hashMap[category]!!.toInt(), category))
             }
         }
         notifyDataSetChanged()
@@ -64,25 +67,29 @@ class CategoryPercentageAdapter :
             itemView.findViewById<TextView>(R.id.categoryTotalTextView)
         val percentageProgressBar = itemView.findViewById<ProgressBar>(R.id.percentageProgressBar)
 
-        fun bindDate(category: Category, percentage: Int) {
+        fun bindDate(category: Category, percentage: Int, color: Int) {
             val utils = Utils()
             var total = 0
             val transactions =
                 transactionList.filter { transaction -> transaction.category.categoryid == category.categoryid }
             for (transaction in transactions) {
-                total -= transaction.amount.toInt()
+                if (total != 0) {
+                    total = if (transaction.category.type == "income")
+                        transaction.amount.toInt() else
+                        -transaction.amount.toInt()
+                } else {
+                    if (transaction.category.type == "income")
+                        total += transaction.amount.toInt() else
+                        total -= transaction.amount.toInt()
+                }
             }
             categoryTitleTextView.text = category.title
             categoryTotalTextView.text = utils.convertPersianPrice(total.toString())
             categoryImageView.setImageBitmap(category.image)
             percentageProgressBar.progress = percentage
-//            percentageProgressBar.progressTintList = ColorStateList.valueOf(getRandomColor())
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                percentageProgressBar.progressTintList = ColorStateList.valueOf(color)
+            }
         }
-
-//        private fun getRandomColor(): Int {
-//            val colors = itemView.resources.obtainTypedArray(R.array.material_colors)
-//            val index = (Math.random() * colors.length()).toInt()
-//            return colors.getColor(index, Color.BLACK)
-//        }
     }
 }
