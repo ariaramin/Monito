@@ -15,11 +15,10 @@
 ## پیش نمایش
 <br />
 <p align="center">
-  <img src="https://github.com/ariaramin/Monito/blob/master/Previews/Screenshot1.png" width="185" />
-  <img src="https://github.com/ariaramin/Monito/blob/master/Previews/Screenshot2.png" width="185" /> 
-  <img src="https://github.com/ariaramin/Monito/blob/master/Previews/Screenshot3.png" width="185" />
-  <img src="https://github.com/ariaramin/Monito/blob/master/Previews/Screenshot4.png" width="185" />
-  <img src="https://github.com/ariaramin/Monito/blob/master/Previews/Screenshot5.png" width="185" />
+  <img src="https://github.com/ariaramin/Monito/blob/master/Previews/Screenshot2.png" width="200" /> 
+  <img src="https://github.com/ariaramin/Monito/blob/master/Previews/Screenshot3.png" width="200" />
+  <img src="https://github.com/ariaramin/Monito/blob/master/Previews/Screenshot4.png" width="200" />
+  <img src="https://github.com/ariaramin/Monito/blob/master/Previews/Screenshot5.png" width="200" />
 </p>
 
 
