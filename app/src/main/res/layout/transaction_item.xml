@@ -37,7 +37,7 @@
             android:layout_marginStart="8dp"
             android:layout_toEndOf="@id/transactionCategoryImageView"
             android:textColor="@color/black"
-            android:textSize="22sp"
+            android:textSize="20sp"
             tools:text="غذا" />
 
         <TextView

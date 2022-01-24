@@ -158,7 +158,7 @@ class ChartActivity : AppCompatActivity() {
         val pieDataSet = PieDataSet(pieEntries, "")
         pieDataSet.valueTextSize = 14f
         if (pieEntries[0].label == "خالی") {
-            pieDataSet.setColor(0, Color.GRAY)
+            pieDataSet.setColor(0, Color.DKGRAY)
         } else {
             pieDataSet.colors = colors
             for (item in transactions) {
