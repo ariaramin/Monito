@@ -41,4 +41,4 @@
 --!>
 
 ## لایسنس
-تحت مجوز GPLv3 توزیع شده است. برای اطلاعات بیشتر <a href="https://choosealicense.com/licenses/">licenses</a> را ببینید.
+تحت مجوز GPLv3 منتشر شده است. برای اطلاعات بیشتر <a href="https://choosealicense.com/licenses/">licenses</a> را ببینید.
