@@ -40,5 +40,5 @@
 * LiveData 
 --!>
 
-## لایسنس
+## مجوز
 تحت مجوز GPLv3 منتشر شده است. برای اطلاعات بیشتر <a href="https://choosealicense.com/licenses/">licenses</a> را ببینید.
