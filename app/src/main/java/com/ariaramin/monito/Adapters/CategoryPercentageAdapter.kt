@@ -32,7 +32,11 @@ class CategoryPercentageAdapter :
     }
 
     override fun onBindViewHolder(holder: CategoryPercentageViewHolder, position: Int) {
-        holder.bindDate(entryList[position].category, entryList[position].percentage, colorList[position])
+        holder.bindDate(
+            entryList[position].category,
+            entryList[position].percentage,
+            colorList[position]
+        )
     }
 
 
@@ -73,15 +77,9 @@ class CategoryPercentageAdapter :
             val transactions =
                 transactionList.filter { transaction -> transaction.category.categoryid == category.categoryid }
             for (transaction in transactions) {
-                if (total != 0) {
-                    total = if (transaction.category.type == "income")
-                        transaction.amount.toInt() else
-                        -transaction.amount.toInt()
-                } else {
-                    if (transaction.category.type == "income")
-                        total += transaction.amount.toInt() else
-                        total -= transaction.amount.toInt()
-                }
+                if (transaction.category.type == "income")
+                    total += transaction.amount.toInt() else
+                    total -= transaction.amount.toInt()
             }
             categoryTitleTextView.text = category.title
             categoryTotalTextView.text = utils.convertPersianPrice(total.toString())
