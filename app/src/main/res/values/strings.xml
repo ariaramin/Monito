@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Monito</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="start">شروع کنید</string>
+    <string name="next">بعدی</string>
+    <string name="previous">قبلی</string>
+    <string name="welcome">به اپلیکیشن مانیتو \n خوش آمدید</string>
+    <string name="lorem_ipsum">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</string>
+</resources>
