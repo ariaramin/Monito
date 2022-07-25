@@ -3,14 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_arrow_small_left.xml" value="0.336" />
         <entry key="app/src/main/res/drawable/ic_arrow_small_right.xml" value="0.336" />
         <entry key="app/src/main/res/drawable/ic_background.xml" value="0.268" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3338541666666667" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.3338541666666667" />
+        <entry key="app/src/main/res/layout/fragment_fifth_screen.xml" value="0.2740487387772552" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_first_screen.xml" value="0.2740487387772552" />
+        <entry key="app/src/main/res/layout/fragment_fourth_screen.xml" value="0.2740487387772552" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2740487387772552" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.3338541666666667" />
-        <entry key="app/src/main/res/layout/fragment_second_screen.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_second_screen.xml" value="0.2740487387772552" />
+        <entry key="app/src/main/res/layout/fragment_third_screen.xml" value="0.2740487387772552" />
+        <entry key="app/src/main/res/layout/fragment_viewpager.xml" value="0.18" />
       </map>
     </option>
   </component>
@@ -19,5 +25,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.2740487387772552" />
+      </ProjectState>
+    </option>
   </component>
 </project>

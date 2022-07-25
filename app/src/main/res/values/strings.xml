@@ -7,6 +7,13 @@
     <string name="start">شروع کنید</string>
     <string name="next">بعدی</string>
     <string name="previous">قبلی</string>
+    <string name="skip">رد کردن</string>
     <string name="welcome">به اپلیکیشن مانیتو \n خوش آمدید</string>
+    <string name="second_on_boarding_title">پولاتون رو کجا خرج میکنید؟!</string>
+    <string name="third_on_boarding_title">با مانیتو به راحتی هزینه هایتان را \n بودجه بندی کنید</string>
+    <string name="fourth_on_boarding_title">با مانیتو مراقب پس‌انداز \n هایتان باشید</string>
+    <string name="fifth_on_boarding_title">با مدیریت دخل و خرجتان \n پول دار شوید</string>
     <string name="lorem_ipsum">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

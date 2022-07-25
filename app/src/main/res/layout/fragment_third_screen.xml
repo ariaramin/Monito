@@ -5,13 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:background="@drawable/ic_background"
-    tools:context=".ui.onBoarding.screens.FirstScreenFragment">
+    tools:context=".ui.onBoarding.screens.ThirdScreenFragment">
+
 
     <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifImageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/on_boarding1"
+        android:src="@drawable/on_boarding3"
         app:layout_constraintBottom_toTopOf="@+id/guideline8"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
@@ -54,9 +56,9 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/welcome"
+        android:text="@string/third_on_boarding_title"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="28sp"

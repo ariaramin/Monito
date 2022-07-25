@@ -4,6 +4,7 @@
     package="com.ariaramin.monito">
 
     <application
+        android:name=".hilt.HiltApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"

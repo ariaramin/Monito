@@ -3,6 +3,9 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.dagger.hilt.android'
+
 android {
     compileSdk 32
 
@@ -45,8 +48,15 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
+    // Dagger Hilt
+    implementation 'com.google.dagger:hilt-android:2.43'
+    kapt 'com.google.dagger:hilt-compiler:2.43'
+
     // Gif Drawable
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.24'
+
+    // Dots Indicator
+    implementation "com.tbuonomo:dotsindicator:4.3"
 
     // SmoothBottomBar
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.9'
@@ -62,4 +72,8 @@ dependencies {
 
     // Lottie Animation Library
     implementation 'com.airbnb.android:lottie:4.2.2'
+}
+
+kapt {
+    correctErrorTypes true
 }

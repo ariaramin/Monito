@@ -3,26 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
-
+    app:startDestination="@id/viewPagerFragment">
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.ariaramin.monito.ui.onBoarding.FirstScreen"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first_screen">
-
+        android:id="@+id/viewPagerFragment"
+        android:name="com.ariaramin.monito.ui.onBoarding.ViewPagerFragment"
+        android:label="fragment_viewpager"
+        tools:layout="@layout/fragment_viewpager" >
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_viewPagerFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/viewPagerFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.ariaramin.monito.ui.onBoarding.SecondScreen"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second_screen">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
+        android:id="@+id/homeFragment"
+        android:name="com.ariaramin.monito.ui.onBoarding.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
 </navigation>

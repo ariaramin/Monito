@@ -2,6 +2,7 @@
 <resources>
     <color name="primaryColor">#F65364</color>
     <color name="primaryColorLight">#B2F65364</color>
+    <color name="yellow">#FF9800</color>
     <color name="grey">#E0E0E0</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
