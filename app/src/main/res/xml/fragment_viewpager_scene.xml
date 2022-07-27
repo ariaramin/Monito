@@ -40,6 +40,7 @@
             motion:layout_constraintTop_toTopOf="@id/guideline2"
             motion:layout_constraintStart_toStartOf="@id/guideline5"
             android:alpha="0" />
+        <Constraint />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">

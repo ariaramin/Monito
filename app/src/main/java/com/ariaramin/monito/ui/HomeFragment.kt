@@ -1,4 +1,4 @@
-package com.ariaramin.monito.ui.onBoarding
+package com.ariaramin.monito.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

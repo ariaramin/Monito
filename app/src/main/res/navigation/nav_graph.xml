@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.ariaramin.monito.ui.onBoarding.HomeFragment"
+        android:name="com.ariaramin.monito.ui.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
 </navigation>

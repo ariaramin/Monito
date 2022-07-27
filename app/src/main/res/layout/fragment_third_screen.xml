@@ -7,13 +7,11 @@
     tools:background="@drawable/ic_background"
     tools:context=".ui.onBoarding.screens.ThirdScreenFragment">
 
-
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/gifImageView"
+    <ImageView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/on_boarding3"
+        android:src="@drawable/ic_on_boarding_3"
         app:layout_constraintBottom_toTopOf="@+id/guideline8"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
@@ -75,9 +73,8 @@
         app:layout_constraintGuide_percent="0.6" />
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/lorem_ipsum"
         android:textAlignment="center"
@@ -86,6 +83,7 @@
         app:layout_constraintBottom_toBottomOf="@id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
